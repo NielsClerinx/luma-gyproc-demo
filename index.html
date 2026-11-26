@@ -39,7 +39,15 @@ h1 em{font-weight:700;font-style:italic}
 .bpanel{position:absolute;right:0;top:calc(100% + 8px);width:250px;background:#121212;display:flex;flex-direction:column;padding:8px;z-index:30}
 .bpanel a{color:#fff!important;text-decoration:none;padding:14px 12px;font-weight:500}
 .hdr{position:relative;z-index:20}
+.pbtn{background:#fff;color:#121212;border:0;border-radius:2px;font:inherit;font-weight:600;font-size:14px;padding:9px 14px;cursor:pointer}
+.pbtn:hover{background:#D5D5D1}
+.mband{position:relative}
+.mband .pbtn{position:absolute;right:16px;top:50%;transform:translateY(-50%);z-index:2}
+.tile .pbtn{z-index:3;position:absolute;right:14px;bottom:14px;background:#121212;color:#fff}
+.tile .pbtn:hover{background:#3A3A38}
 @media (max-width:700px){
+.hdr img{height:38px!important}
+
 .nav{display:none!important}
 .hdr{flex-wrap:nowrap!important;padding-top:16px!important;padding-bottom:16px!important}
 .hdr>div:first-child{min-width:0}
@@ -74,7 +82,7 @@ h1 em{font-weight:700;font-style:italic}
   <div style="background:#E6E6E3">
     <div class="hdr" style="max-width:1240px;margin:0 auto;padding:22px 24px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between;box-sizing:border-box">
       <div style="display:flex;align-items:center;gap:14px">
-        <div style="font-family:'Bodoni Moda','Didot',Georgia,serif;font-weight:700;font-size:34px;line-height:1;letter-spacing:-0.08em">MM</div>
+        <img src="media/logo-header.png" alt="" style="height:46px;width:auto;display:block">
         <div style="font-family:'Bodoni Moda','Didot',Georgia,serif;font-weight:700;font-variation-settings:'opsz' 18;font-optical-sizing:none;font-size:20px;letter-spacing:0.14em;text-transform:uppercase">Luma Gyproc</div>
       </div>
       <details class="burger"><summary>Menu</summary><div class="bpanel"><a href="#diensten" onclick="this.closest('details').removeAttribute('open')">Diensten</a><a href="#werk" onclick="this.closest('details').removeAttribute('open')">Op de werf</a><a href="#contact" onclick="this.closest('details').removeAttribute('open')">Contact</a><a href="tel:+32477716312" style="font-weight:700">Bel 0477 71 63 12</a></div></details>
@@ -112,11 +120,12 @@ h1 em{font-weight:700;font-style:italic}
   </div>
 
   <!-- Marquee -->
-  <div class="dark" style="background:#121212;color:#FFFFFF;overflow:hidden">
+  <div class="dark mband" style="background:#121212;color:#FFFFFF;overflow:hidden">
     <div class="marq" style="padding:22px 0;font-family:'Bodoni Moda','Didot',Georgia,serif;font-style:italic;font-weight:700;font-variation-settings:'opsz' 18;font-optical-sizing:none;font-size:26px;white-space:nowrap">
       <span style="padding-right:56px">Scheidingswanden</span><span style="padding-right:56px">Voorzetwanden</span><span style="padding-right:56px">Plafonds</span><span style="padding-right:56px">Systeemplafonds</span><span style="padding-right:56px">Isolatie</span><span style="padding-right:56px">Schilderklaar</span>
       <span style="padding-right:56px" aria-hidden="true">Scheidingswanden</span><span style="padding-right:56px" aria-hidden="true">Voorzetwanden</span><span style="padding-right:56px" aria-hidden="true">Plafonds</span><span style="padding-right:56px" aria-hidden="true">Systeemplafonds</span><span style="padding-right:56px" aria-hidden="true">Isolatie</span><span style="padding-right:56px" aria-hidden="true">Schilderklaar</span>
     </div>
+    <button class="pbtn" type="button" aria-label="Lopende tekst pauzeren of afspelen" onclick="var m=this.parentNode.querySelector('.marq');var p=m.style.animationPlayState==='paused';m.style.animationPlayState=p?'running':'paused';this.textContent=p?'Pauze':'Afspelen'">Pauze</button>
   </div>
 
   <!-- Diensten -->
@@ -177,6 +186,7 @@ h1 em{font-weight:700;font-style:italic}
         </div>
         <div class="tile" style="flex:1 1 300px;min-width:0;height:520px">
           <video src="media/kantoor.mp4" poster="media/kantoor-poster.jpg" autoplay muted loop playsinline aria-label="Rondgang door een afgewerkt kantoorproject"></video>
+          <button class="pbtn" type="button" aria-label="Video pauzeren of afspelen" onclick="var v=this.previousElementSibling;if(v.paused){v.play();this.textContent='Pauze'}else{v.pause();this.textContent='Afspelen'}">Pauze</button>
           <div class="scrim">Kantoorproject</div>
         </div>
       </div>
