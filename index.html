@@ -40,6 +40,10 @@ h1 em{font-weight:700;font-style:italic}
 .bpanel a{color:#fff!important;text-decoration:none;padding:14px 12px;font-weight:500}
 .hdr{position:relative;z-index:20}
 .pbtn{background:#fff;color:#121212;border:0;border-radius:2px;font:inherit;font-weight:600;font-size:14px;padding:9px 14px;cursor:pointer}
+.pbtn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0!important}
+.pbtn .i-play{display:none}
+.pbtn.is-paused .i-play{display:block}
+.pbtn.is-paused .i-pause{display:none}
 .pbtn:hover{background:#D5D5D1}
 .mband{position:relative}
 .mband .pbtn{position:absolute;right:16px;top:50%;transform:translateY(-50%);z-index:2}
@@ -125,7 +129,7 @@ h1 em{font-weight:700;font-style:italic}
       <span style="padding-right:56px">Scheidingswanden</span><span style="padding-right:56px">Voorzetwanden</span><span style="padding-right:56px">Plafonds</span><span style="padding-right:56px">Systeemplafonds</span><span style="padding-right:56px">Isolatie</span><span style="padding-right:56px">Schilderklaar</span>
       <span style="padding-right:56px" aria-hidden="true">Scheidingswanden</span><span style="padding-right:56px" aria-hidden="true">Voorzetwanden</span><span style="padding-right:56px" aria-hidden="true">Plafonds</span><span style="padding-right:56px" aria-hidden="true">Systeemplafonds</span><span style="padding-right:56px" aria-hidden="true">Isolatie</span><span style="padding-right:56px" aria-hidden="true">Schilderklaar</span>
     </div>
-    <button class="pbtn" type="button" aria-label="Lopende tekst pauzeren of afspelen" onclick="var m=this.parentNode.querySelector('.marq');var p=m.style.animationPlayState==='paused';m.style.animationPlayState=p?'running':'paused';this.textContent=p?'Pauze':'Afspelen'">Pauze</button>
+    <button class="pbtn" type="button" aria-label="Lopende tekst pauzeren" aria-pressed="false" onclick="var m=this.parentNode.querySelector('.marq');var p=m.style.animationPlayState==='paused';m.style.animationPlayState=p?'running':'paused';this.classList.toggle('is-paused',!p);this.setAttribute('aria-pressed',p?'false':'true')"><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/></svg><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg></button>
   </div>
 
   <!-- Diensten -->
@@ -186,7 +190,7 @@ h1 em{font-weight:700;font-style:italic}
         </div>
         <div class="tile" style="flex:1 1 300px;min-width:0;height:520px">
           <video src="media/kantoor.mp4" poster="media/kantoor-poster.jpg" autoplay muted loop playsinline aria-label="Rondgang door een afgewerkt kantoorproject"></video>
-          <button class="pbtn" type="button" aria-label="Video pauzeren of afspelen" onclick="var v=this.previousElementSibling;if(v.paused){v.play();this.textContent='Pauze'}else{v.pause();this.textContent='Afspelen'}">Pauze</button>
+          <button class="pbtn" type="button" aria-label="Video pauzeren" aria-pressed="false" onclick="var v=this.previousElementSibling;if(v.paused){v.play();this.classList.remove('is-paused');this.setAttribute('aria-pressed','false')}else{v.pause();this.classList.add('is-paused');this.setAttribute('aria-pressed','true')}"><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/></svg><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg></button>
           <div class="scrim">Kantoorproject</div>
         </div>
       </div>
